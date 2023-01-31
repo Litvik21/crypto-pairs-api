@@ -1,8 +1,13 @@
 package crypro.cryptopairsapi.repository;
 
 
-import crypro.cryptopairsapi.model.LastPricePair;
+import java.util.List;
+import crypro.cryptopairsapi.model.CryptoCurrency;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface LastPricePairRepository extends MongoRepository<LastPricePair, String> {
+public interface CryptoCurrencyRepository extends MongoRepository<CryptoCurrency, Long> {
+    List<CryptoCurrency> findByFirstSymbol(String currencyName);
+
+    List<CryptoCurrency> findByFirstSymbol(PageRequest pageRequest, String currencyName);
 }

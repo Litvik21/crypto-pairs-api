@@ -1,9 +1,8 @@
-package crypro.cryptopairsapi.service;
-
-import org.springframework.data.domain.Sort;
+package crypro.cryptopairsapi.service.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.domain.Sort;
 
 public class SortUtil {
     private static final int DIRECTION_INDEX = 1;

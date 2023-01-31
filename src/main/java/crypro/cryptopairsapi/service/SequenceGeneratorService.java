@@ -1,2 +1,5 @@
-package crypro.cryptopairsapi.service;public interface SequenceGeneratorService {
+package crypro.cryptopairsapi.service;
+
+public interface SequenceGeneratorService {
+    long generateSequence(String seqName);
 }

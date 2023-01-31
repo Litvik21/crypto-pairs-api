@@ -1,17 +1,29 @@
 package crypro.cryptopairsapi.dto.mapper;
 
-import crypro.cryptopairsapi.dto.external.ApiResponseDto;
-import crypro.cryptopairsapi.model.LastPricePair;
+import crypro.cryptopairsapi.dto.CryptoCurrencyResponseDto;
+import crypro.cryptopairsapi.dto.ExternalResponseDto;
+import crypro.cryptopairsapi.model.CryptoCurrency;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LastPricePairMapper {
-    public LastPricePair toModel(ApiResponseDto dto) {
-        LastPricePair pair = new LastPricePair();
-        pair.setPair(dto.getCurr1() + "/" + dto.getCurr2());
-        pair.setFirstSymbol(dto.getCurr1());
-        pair.setSecondSymbol(dto.getCurr2());
-        pair.setLastPrice(dto.getLprice());
-        return pair;
+public class CryptoCurrencyMapper {
+    public CryptoCurrency toModel(ExternalResponseDto dto) {
+        CryptoCurrency currency = new CryptoCurrency();
+        currency.setPair(dto.getCurr1() + "/" + dto.getCurr2());
+        currency.setFirstSymbol(dto.getCurr1());
+        currency.setSecondSymbol(dto.getCurr2());
+        currency.setPrice(dto.getLprice());
+
+        return currency;
+    }
+
+    public CryptoCurrencyResponseDto toDto(CryptoCurrency currency) {
+        CryptoCurrencyResponseDto dto = new CryptoCurrencyResponseDto();
+        dto.setPair(currency.getPair());
+        dto.setFirstSymbol(currency.getFirstSymbol());
+        dto.setSecondSymbol(currency.getSecondSymbol());
+        dto.setPrice(currency.getPrice());
+
+        return dto;
     }
 }

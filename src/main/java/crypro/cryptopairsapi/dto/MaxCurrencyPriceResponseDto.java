@@ -1,6 +1,7 @@
 package crypro.cryptopairsapi.dto;
 
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CryptoCurrencyResponseDto {
+@AllArgsConstructor
+public class MaxCurrencyPriceResponseDto {
     private String pair;
-    private String firstSymbol;
-    private String secondSymbol;
-    private BigDecimal price;
+    private BigDecimal maxPrice;
 }
