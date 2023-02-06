@@ -8,6 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CryptoCurrencyRepository extends MongoRepository<CryptoCurrency, Long> {
     List<CryptoCurrency> findByFirstSymbol(String currencyName);
-
     List<CryptoCurrency> findByFirstSymbol(PageRequest pageRequest, String currencyName);
 }

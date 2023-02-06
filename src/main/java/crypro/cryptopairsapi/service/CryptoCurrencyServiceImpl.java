@@ -40,11 +40,6 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     }
 
     @Override
-    public List<CryptoCurrency> getAll(PageRequest pageRequest) {
-        return repository.findAll(pageRequest).toList();
-    }
-
-    @Override
     public CryptoCurrency getMinPrice(String currencyName) {
         List<CryptoCurrency> currencies = repository.findByFirstSymbol(currencyName);
         return currencies.stream().min(Comparator.comparing(CryptoCurrency::getPrice)).orElseThrow(() ->

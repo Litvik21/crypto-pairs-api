@@ -11,6 +11,8 @@ import crypro.cryptopairsapi.model.CryptoCurrency;
 import crypro.cryptopairsapi.service.CryptoCurrencyService;
 import crypro.cryptopairsapi.service.util.CsvFileGenerator;
 import crypro.cryptopairsapi.service.util.SortUtil;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -24,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CryptoCurrencyController {
     private final CryptoCurrencyService currencyService;
     private final CryptoCurrencyMapper mapper;
-
     private final CsvFileGenerator csvFileGenerator;
 
     public CryptoCurrencyController(CryptoCurrencyService currencyService,
@@ -36,23 +37,40 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/minprice")
-    public MinCurrencyPriceResponseDto getMinPrice(@RequestParam("name") String currencyName) {
+    @ApiOperation(value = "Get min price of chosen cryptocurrency")
+    public MinCurrencyPriceResponseDto getMinPrice(
+            @RequestParam("name")
+            @ApiParam(value = "enter currency name")
+            String currencyName) {
+
         CryptoCurrency currency = currencyService.getMinPrice(currencyName);
         return new MinCurrencyPriceResponseDto(currency.getPair(), currency.getPrice());
     }
 
     @GetMapping("/maxprice")
-    public MaxCurrencyPriceResponseDto getMaxPrice(@RequestParam("name") String currencyName) {
+    @ApiOperation(value = "Get max price of chosen cryptocurrency")
+    public MaxCurrencyPriceResponseDto getMaxPrice(
+            @RequestParam("name")
+            @ApiParam(value = "enter currency name")
+            String currencyName) {
+
         CryptoCurrency currency = currencyService.getMaxPrice(currencyName);
         return new MaxCurrencyPriceResponseDto(currency.getPair(), currency.getPrice());
     }
 
     @GetMapping
-    public List<CryptoCurrencyResponseDto> getAll(@RequestParam("name") String currencyName,
-                                                  @RequestParam(defaultValue = "10")
-                                                  Integer size,
-                                                  @RequestParam(defaultValue = "0")
-                                                  Integer page) {
+    @ApiOperation(value = "Get list of chosen cryptocurrency")
+    public List<CryptoCurrencyResponseDto> getAll(
+            @RequestParam("name")
+            @ApiParam(value = "enter currency name")
+            String currencyName,
+            @RequestParam(defaultValue = "10")
+            @ApiParam(value = "enter size of elements on page")
+            Integer size,
+            @RequestParam(defaultValue = "0")
+            @ApiParam(value = "enter number of page")
+            Integer page) {
+
         Sort sort = Sort.by(SortUtil.sort("price"));
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return currencyService.findByFirstSymbol(pageRequest, currencyName).stream()
@@ -61,6 +79,7 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/csv")
+    @ApiOperation(value = "Get report of cryptocurrencies in csv file")
     public void generateCsvRepo(HttpServletResponse response) {
         response.setContentType("text/csv");
         response.addHeader("Content-Disposition", "attachment; filename=\"currencies.csv\"");
@@ -72,6 +91,7 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/demo")
+    @ApiOperation(value = "Getting data of cryptocurrencies from api")
     public void demo(){
         currencyService.syncExternalCharacters();
     }

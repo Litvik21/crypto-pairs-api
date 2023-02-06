@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 
 public interface CryptoCurrencyService {
     void syncExternalCharacters();
-    List<CryptoCurrency> getAll(PageRequest pageRequest);
 
     CryptoCurrency getMinPrice(String currencyName);
 
@@ -15,5 +14,4 @@ public interface CryptoCurrencyService {
     void save(CryptoCurrency currency);
 
     List<CryptoCurrency> findByFirstSymbol(PageRequest pageRequest, String currencyName);
-
 }
