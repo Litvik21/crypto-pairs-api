@@ -25,7 +25,7 @@ public class CsvFileGenerator {
                         service.getMaxPrice(currency).getPrice());
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't write data to csv. ", e);
         }
     }
 }

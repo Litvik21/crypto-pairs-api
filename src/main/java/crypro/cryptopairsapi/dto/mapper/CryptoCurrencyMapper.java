@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class CryptoCurrencyMapper {
     public CryptoCurrency toModel(ExternalResponseDto dto) {
         CryptoCurrency currency = new CryptoCurrency();
-        currency.setPair(dto.getCurr1() + "/" + dto.getCurr2());
-        currency.setFirstSymbol(dto.getCurr1());
-        currency.setSecondSymbol(dto.getCurr2());
-        currency.setPrice(dto.getLprice());
+        currency.setPair(dto.getFirstCurrency() + "/" + dto.getSecondCurrency());
+        currency.setFirstSymbol(dto.getFirstCurrency());
+        currency.setSecondSymbol(dto.getSecondCurrency());
+        currency.setPrice(dto.getLastPrice());
 
         return currency;
     }

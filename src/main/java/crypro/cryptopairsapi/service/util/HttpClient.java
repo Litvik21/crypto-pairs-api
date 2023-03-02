@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class HttpClient {
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private final ObjectMapper objectMapper;
+
+    public HttpClient(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public <T> T get(String url, Class<T> clazz) {

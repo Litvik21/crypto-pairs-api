@@ -86,7 +86,7 @@ public class CryptoCurrencyController {
         try {
             csvFileGenerator.writeDataToCsv(response.getWriter());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't write data to csv. ", e);
         }
     }
 

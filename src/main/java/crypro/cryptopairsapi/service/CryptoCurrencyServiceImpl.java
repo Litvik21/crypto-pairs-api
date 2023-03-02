@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     private final CryptoCurrencyRepository repository;
     private final CryptoCurrencyMapper mapper;
-    @Value("https://cex.io/api/last_price/")
+    @Value("${crypro.cryptopairsapi.key}")
     private String currencyLink;
     private final HttpClient httpClient;
 
@@ -31,10 +31,10 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     @Scheduled(cron = "10 * * * *")
     @Override
     public void syncExternalCharacters() {
-        List<String> linksEnd = List.of("BTC/USD", "ETH/USD", "XRP/USD");
-        for (String linkEnd : linksEnd) {
+        List<String> cryptoCurrencies = List.of("BTC/USD", "ETH/USD", "XRP/USD");
+        for (String cryptoCurrency : cryptoCurrencies) {
             CryptoCurrency currency = mapper.toModel(httpClient
-                    .get(currencyLink + linkEnd, ExternalResponseDto.class));
+                    .get(currencyLink + cryptoCurrency, ExternalResponseDto.class));
             save(currency);
         }
     }

@@ -27,7 +27,7 @@ This app is working with different API and getting data of cryptocurrencies and 
 - Spring Web/Boot/MVC
 
 ## ⚡️Quickstart
-1. Copy this project
+1. Clone this project
 2. Open project in IDE
 3. Start project
 4. Open in your browse this link http://localhost:8080

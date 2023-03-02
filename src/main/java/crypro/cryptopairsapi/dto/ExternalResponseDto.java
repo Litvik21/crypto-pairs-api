@@ -1,6 +1,7 @@
 package crypro.cryptopairsapi.dto;
 
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ExternalResponseDto {
-    private BigDecimal lprice;
-    private String curr1;
-    private String curr2;
+    @JsonProperty(value = "lprice")
+    private BigDecimal lastPrice;
+    @JsonProperty(value = "curr1")
+    private String firstCurrency;
+    @JsonProperty(value = "curr2")
+    private String secondCurrency;
 }
