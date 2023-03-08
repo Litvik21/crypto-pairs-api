@@ -1,21 +1,21 @@
 package crypro.cryptopairsapi.service.util;
 
 import java.io.IOException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HttpClient {
-    private final CloseableHttpClient httpClient = HttpClients.createDefault();
+    private final CloseableHttpClient httpClient;
     private final ObjectMapper objectMapper;
 
-    public HttpClient(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    public HttpClient(CloseableHttpClient httpClient, ObjectMapper objectMapper) {
+        this.httpClient = httpClient;
+        this.objectMapper = objectMapper;
     }
 
     public <T> T get(String url, Class<T> clazz) {
