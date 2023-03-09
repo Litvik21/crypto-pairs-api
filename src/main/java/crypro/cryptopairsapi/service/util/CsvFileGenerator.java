@@ -16,10 +16,9 @@ public class CsvFileGenerator {
         this.service = service;
     }
 
-    public void writeDataToCsv(Writer writer) {
+    public void writeDataToCsv(Writer writer, List<String> currencies) {
         try {
             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
-            List<String> currencies = List.of("BTC", "ETH", "XRP");
             for (String currency : currencies) {
                 csvPrinter.printRecord(currency, service.getMinPrice(currency).getPrice(),
                         service.getMaxPrice(currency).getPrice());

@@ -83,8 +83,10 @@ public class CryptoCurrencyController {
     public void generateCsvRepo(HttpServletResponse response) {
         response.setContentType("text/csv");
         response.addHeader("Content-Disposition", "attachment; filename=\"currencies.csv\"");
+
+        List<String> currencies = List.of("BTC", "ETH", "XRP");
         try {
-            csvFileGenerator.writeDataToCsv(response.getWriter());
+            csvFileGenerator.writeDataToCsv(response.getWriter(), currencies);
         } catch (IOException e) {
             throw new RuntimeException("Can't write data to csv. ", e);
         }
