@@ -1,9 +1,9 @@
 package crypro.cryptopairsapi.service.util;
 
+import crypro.cryptopairsapi.service.CryptoCurrencyService;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
-import crypro.cryptopairsapi.service.CryptoCurrencyService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Component;

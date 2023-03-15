@@ -17,7 +17,8 @@ public class CryptoCurrencyListenerUtil extends AbstractMongoEventListener<Crypt
     @Override
     public void onBeforeConvert(BeforeConvertEvent<CryptoCurrency> event) {
         if (event.getSource().getId() < 1) {
-            event.getSource().setId(sequenceGenerator.generateSequence(CryptoCurrency.SEQUENCE_NAME));
+            event.getSource().setId(sequenceGenerator
+                    .generateSequence(CryptoCurrency.SEQUENCE_NAME));
         }
     }
 }

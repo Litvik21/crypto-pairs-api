@@ -1,12 +1,11 @@
 package crypro.cryptopairsapi.service;
 
-import java.util.Comparator;
-import java.util.List;
 import crypro.cryptopairsapi.dto.ExternalResponseDto;
 import crypro.cryptopairsapi.dto.mapper.CryptoCurrencyMapper;
 import crypro.cryptopairsapi.model.CryptoCurrency;
 import crypro.cryptopairsapi.repository.CryptoCurrencyRepository;
 import crypro.cryptopairsapi.service.util.HttpClient;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -41,16 +40,16 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
 
     @Override
     public CryptoCurrency getMinPrice(String currencyName) {
-        List<CryptoCurrency> currencies = repository.findByFirstSymbol(currencyName);
-        return currencies.stream().min(Comparator.comparing(CryptoCurrency::getPrice)).orElseThrow(() ->
-                new RuntimeException("Min price by this currency name: " + currencyName + " - NOT FOUND"));
+        return repository.findFirstByFirstSymbolOrderByPriceAsc(currencyName).orElseThrow(() ->
+                new RuntimeException("Min price by this currency name: "
+                        + currencyName + " - NOT FOUND"));
     }
 
     @Override
     public CryptoCurrency getMaxPrice(String currencyName) {
-        List<CryptoCurrency> currencies = repository.findByFirstSymbol(currencyName);
-        return currencies.stream().max(Comparator.comparing(CryptoCurrency::getPrice)).orElseThrow(() ->
-                new RuntimeException("Max price by this currency name: " + currencyName + " - NOT FOUND"));
+        return repository.findFirstByFirstSymbolOrderByPriceDesc(currencyName).orElseThrow(() ->
+                new RuntimeException("Max price by this currency name: "
+                        + currencyName + " - NOT FOUND"));
     }
 
     @Override

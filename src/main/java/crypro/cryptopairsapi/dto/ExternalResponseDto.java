@@ -1,7 +1,7 @@
 package crypro.cryptopairsapi.dto;
 
-import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

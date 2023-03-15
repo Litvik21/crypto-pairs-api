@@ -1,7 +1,7 @@
 package crypro.cryptopairsapi.service;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Optional;
 import crypro.cryptopairsapi.model.CryptoCurrency;
 import crypro.cryptopairsapi.repository.CryptoCurrencyRepository;
 import org.junit.jupiter.api.Assertions;
@@ -19,32 +19,24 @@ class CryptoCurrencyServiceImplTest {
     private CryptoCurrencyServiceImpl currencyService;
     @Mock
     private CryptoCurrencyRepository repository;
-    private List<CryptoCurrency> currencies;
+    private CryptoCurrency currencyMinPrice;
+    private CryptoCurrency currencyMaxPrice;
 
     @BeforeEach
     void setUp() {
-        CryptoCurrency currency1 = new CryptoCurrency();
-        currency1.setPair("BTC/USD");
-        currency1.setPrice(BigDecimal.valueOf(423.55));
-        CryptoCurrency currency2 = new CryptoCurrency();
-        currency2.setPair("BTC/USD");
-        currency2.setPrice(BigDecimal.valueOf(123.45));
-        CryptoCurrency currency3 = new CryptoCurrency();
-        currency3.setPair("BTC/USD");
-        currency3.setPrice(BigDecimal.valueOf(111.22));
-        CryptoCurrency currency4 = new CryptoCurrency();
-        currency4.setPair("BTC/USD");
-        currency4.setPrice(BigDecimal.valueOf(321.45));
-        CryptoCurrency currency5 = new CryptoCurrency();
-        currency5.setPair("BTC/USD");
-        currency5.setPrice(BigDecimal.valueOf(432.12));
-        currencies = List.of(currency1, currency2, currency3, currency4, currency5);
+        currencyMinPrice = new CryptoCurrency();
+        currencyMinPrice.setPair("BTC/USD");
+        currencyMinPrice.setPrice(BigDecimal.valueOf(111.22));
+
+        currencyMaxPrice = new CryptoCurrency();
+        currencyMaxPrice.setPair("BTC/USD");
+        currencyMaxPrice.setPrice(BigDecimal.valueOf(432.12));
     }
 
     @Test
     void shouldReturnCurrencyByMinPrice() {
-        Mockito.when(repository.findByFirstSymbol("BTC"))
-                .thenReturn(currencies);
+        Mockito.when(repository.findFirstByFirstSymbolOrderByPriceAsc("BTC"))
+                .thenReturn(Optional.ofNullable(currencyMinPrice));
         CryptoCurrency actual = currencyService.getMinPrice("BTC");
         CryptoCurrency expected = new CryptoCurrency();
         expected.setPair("BTC/USD");
@@ -55,8 +47,8 @@ class CryptoCurrencyServiceImplTest {
 
     @Test
     void shouldReturnCurrencyByMaxPrice() {
-        Mockito.when(repository.findByFirstSymbol("BTC"))
-                .thenReturn(currencies);
+        Mockito.when(repository.findFirstByFirstSymbolOrderByPriceDesc("BTC"))
+                .thenReturn(Optional.ofNullable(currencyMaxPrice));
         CryptoCurrency actual = currencyService.getMaxPrice("BTC");
         CryptoCurrency expected = new CryptoCurrency();
         expected.setPair("BTC/USD");

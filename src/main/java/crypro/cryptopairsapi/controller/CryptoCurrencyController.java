@@ -1,8 +1,5 @@
 package crypro.cryptopairsapi.controller;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 import crypro.cryptopairsapi.dto.CryptoCurrencyResponseDto;
 import crypro.cryptopairsapi.dto.MaxCurrencyPriceResponseDto;
 import crypro.cryptopairsapi.dto.MinCurrencyPriceResponseDto;
@@ -14,6 +11,9 @@ import crypro.cryptopairsapi.service.util.SortUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -94,7 +94,7 @@ public class CryptoCurrencyController {
 
     @GetMapping("/demo")
     @ApiOperation(value = "Getting data of cryptocurrencies from api")
-    public void demo(){
+    public void demo() {
         currencyService.syncExternalCharacters();
     }
 }

@@ -1,8 +1,7 @@
 package crypro.cryptopairsapi.service.util;
 
-import java.io.IOException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;

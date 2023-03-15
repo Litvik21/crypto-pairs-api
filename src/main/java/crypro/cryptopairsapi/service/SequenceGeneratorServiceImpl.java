@@ -1,13 +1,14 @@
 package crypro.cryptopairsapi.service;
 
-import java.util.Objects;
-import crypro.cryptopairsapi.model.DatabaseSequence;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.stereotype.Service;
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
+
+import crypro.cryptopairsapi.model.DatabaseSequence;
+import java.util.Objects;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SequenceGeneratorServiceImpl implements SequenceGeneratorService {

@@ -1,12 +1,12 @@
 package crypro.cryptopairsapi.model;
 
 import java.math.BigDecimal;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Setter
 @Getter
@@ -24,12 +24,12 @@ public class CryptoCurrency {
 
     @Override
     public String toString() {
-        return "CryptoCurrency{" +
-                "id=" + id +
-                ", pair='" + pair + '\'' +
-                ", firstSymbol='" + firstSymbol + '\'' +
-                ", secondSymbol='" + secondSymbol + '\'' +
-                ", price=" + price +
-                '}';
+        return "CryptoCurrency{"
+                + "id=" + id
+                + ", pair='" + pair + '\''
+                + ", firstSymbol='" + firstSymbol + '\''
+                + ", secondSymbol='" + secondSymbol + '\''
+                + ", price=" + price
+                + '}';
     }
 }

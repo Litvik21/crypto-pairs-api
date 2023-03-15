@@ -1,7 +1,7 @@
 package crypro.cryptopairsapi.service;
 
-import java.util.List;
 import crypro.cryptopairsapi.model.CryptoCurrency;
+import java.util.List;
 import org.springframework.data.domain.PageRequest;
 
 public interface CryptoCurrencyService {
